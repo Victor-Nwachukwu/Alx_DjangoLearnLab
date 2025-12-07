@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My Django Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}" />
+  </head>
+  <body>
+    <h1>Latest posts</h1>
+    <ul>
+      {% for post in posts %}
+      <li>
+        <a href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a>
+        <small
+          >by {{ post.author.username }} on {{ post.published_date }}</small
+        >
+      </li>
+      {% empty %}
+      <li>No posts yet.</li>
+      {% endfor %}
+    </ul>
+    <script src="{% static 'blog/js/main.js' %}"></script>
+  </body>
+</html>
